@@ -1,0 +1,39 @@
+{
+  "dictionary_item_added": [
+    "root['currentdate']"
+  ],
+  "values_changed": {
+    "root['content']": {
+      "new_value": "JSON",
+      "old_value": "Text"
+    },
+    "root['date']": {
+      "new_value": "Wed, 05 Nov 2025 12:23:38 GMT",
+      "old_value": "Wed, 05 Nov 2025 12:23:36 GMT"
+    },
+    "root['sap_messageprocessinglogid']": {
+      "new_value": "AGkLQcrBi1J7AdyiXaaBncXiUNco",
+      "old_value": "AGkLQchTAyQR4U8GXMKXTwIYVy7w"
+    },
+    "root['sap_mplcorrelationid']": {
+      "new_value": "AGkLQcogxr00W2iL_gUOhkGY-QOq",
+      "old_value": "AGkLQci2_ymxdk2eZywD4QkCLjlV"
+    },
+    "root['sap_pregeneratedmplid']": {
+      "new_value": "AGkLQcpaJ67PcuoFWFptAmUzyjP4",
+      "old_value": "AGkLQche3kXEY1_UVFuqZNR-pS63"
+    },
+    "root['testheader']": {
+      "new_value": "SecondiFlow",
+      "old_value": "FirstiFlow"
+    },
+    "root['x-correlationid']": {
+      "new_value": "bb21bcef-1ef6-464b-59f2-f34b85f6df74",
+      "old_value": "aa364bd3-6175-47d4-5811-0ae4d82818b9"
+    },
+    "root['x-vcap-request-id']": {
+      "new_value": "bb21bcef-1ef6-464b-59f2-f34b85f6df74",
+      "old_value": "aa364bd3-6175-47d4-5811-0ae4d82818b9"
+    }
+  }
+}

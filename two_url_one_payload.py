@@ -1,36 +1,57 @@
 import os
-import sys
 import json
-from compare_utils import fetch_oauth_token, hit_iflow, save_response, compare_responses
+from compare_utils import fetch_oauth_token, hit_iflow, save_body, save_headers, compare_responses
 
-print("🚀 Compare Two URLs using One Payload\n")
+def run():
+    print("\n🔗 Compare Two URLs with One Payload\n")
 
-payload_file = input("Enter payload filename (e.g. payload.json): ").strip()
-if not os.path.exists(payload_file):
-    sys.exit(f"❌ {payload_file} not found.")
+    # Token details
+    token_url = input("Enter OAuth Token URL: ").strip()
+    client_id = input("Enter Client ID: ").strip()
+    client_secret = input("Enter Client Secret: ").strip()
 
-with open(payload_file, "r", encoding="utf-8") as f:
-    payload_text = f.read().strip()
+    url1 = input("Enter OLD iFlow URL: ").strip()
+    url2 = input("Enter NEW iFlow URL: ").strip()
 
-if not payload_text:
-    sys.exit("❌ Payload is empty.")
+    # List all payloads available
+    payload_dir = "payloads"
+    payload_files = [f for f in os.listdir(payload_dir) if f.endswith(".json")]
 
-old_url = input("Enter OLD iFlow URL: ").strip()
-new_url = input("Enter NEW iFlow URL: ").strip()
-if not old_url or not new_url:
-    sys.exit("❌ Both URLs required.")
+    if not payload_files:
+        print("❌ No payload files found in 'payloads' folder.")
+        return
 
-token = fetch_oauth_token()
+    print("\nAvailable payloads:")
+    for i, file in enumerate(payload_files, 1):
+        print(f"{i}. {file}")
 
-print("\n📡 Hitting OLD URL...")
-_, old_resp = hit_iflow(old_url, token, payload_text)
-save_response(old_resp, "response_old.json")
+    try:
+        choice = int(input("\nEnter the number of the payload you want to use: "))
+        payload_file = payload_files[choice - 1]
+    except (ValueError, IndexError):
+        print("❌ Invalid choice.")
+        return
 
-print("\n📡 Hitting NEW URL...")
-_, new_resp = hit_iflow(new_url, token, payload_text)
-save_response(new_resp, "response_new.json")
+    with open(os.path.join(payload_dir, payload_file), "r", encoding="utf-8") as f:
+        payload = json.load(f)
 
-print("\n🔍 Comparing responses...")
-compare_responses(old_resp, new_resp, "two_url_one_payload")
+    # Fetch OAuth token
+    token = fetch_oauth_token(token_url, client_id, client_secret)
 
-print("\n✅ Done! Check results/ folder for details.")
+    # Hit OLD iFlow
+    print(f"\n📤 Sending payload '{payload_file}' to OLD iFlow...")
+    resp1, headers1 = hit_iflow(url1, token, payload)
+    save_body(resp1, "response1_body.json")
+    save_headers(headers1, "response1_headers.json")
+
+    # Hit NEW iFlow
+    print(f"\n📤 Sending payload '{payload_file}' to NEW iFlow...")
+    resp2, headers2 = hit_iflow(url2, token, payload)
+    save_body(resp2, "response2_body.json")
+    save_headers(headers2, "response2_headers.json")
+
+    # Compare both
+    compare_responses(resp1, resp2, headers1, headers2, "url1_vs_url2")
+
+if __name__ == "__main__":
+    run()

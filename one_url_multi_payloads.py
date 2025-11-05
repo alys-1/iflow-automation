@@ -1,61 +1,66 @@
 import os
 import sys
-from compare_utils import fetch_oauth_token, hit_iflow, save_response, compare_responses
+from compare_utils import fetch_oauth_token, hit_iflow, save_body, save_headers, compare_responses
 
-PAYLOAD_DIR = "payloads"
 RESULTS_DIR = "results"
+PAYLOADS_DIR = "payloads"
 os.makedirs(RESULTS_DIR, exist_ok=True)
 
-print("🚀 Single URL - Multiple Payloads Mode\n")
+def run():
+    print("\n=== 📦 One URL, Multiple Payloads Mode ===\n")
 
-url = input("Enter iFlow URL: ").strip()
-if not url:
-    sys.exit("❌ URL required.")
+    if not os.path.exists(PAYLOADS_DIR):
+        sys.exit("❌ 'payloads' folder not found.")
 
-token = fetch_oauth_token()
+    payload_files = [f for f in os.listdir(PAYLOADS_DIR) if f.endswith(".json")]
+    if not payload_files:
+        sys.exit("❌ No .json payload files found in 'payloads' folder.")
 
-if not os.path.exists(PAYLOAD_DIR):
-    sys.exit(f"❌ Folder '{PAYLOAD_DIR}' not found.")
+    print(f"🔍 Found {len(payload_files)} payload(s): {payload_files}")
 
-payload_files = [f for f in os.listdir(PAYLOAD_DIR) if f.endswith(".json")]
-if not payload_files:
-    sys.exit("❌ No payloads found in payloads/")
+    url = input("Enter iFlow endpoint URL: ").strip()
+    if not url:
+        sys.exit("❌ URL is required.")
 
-response_files = []
+    token = fetch_oauth_token()
 
-for idx, file in enumerate(payload_files, 1):
-    print(f"\n📤 Sending payload {idx}: {file}")
-    with open(os.path.join(PAYLOAD_DIR, file), "r", encoding="utf-8") as f:
-        payload_text = f.read().strip()
-    if not payload_text:
-        print(f"⚠️ Skipping empty file: {file}")
-        continue
+    responses = []
+    headers_list = []
 
-    _, resp = hit_iflow(url, token, payload_text)
-    filename = f"response_{idx}.json"
-    save_response(resp, filename)
-    response_files.append(filename)
+    for i, payload_file in enumerate(payload_files, start=1):
+        with open(os.path.join(PAYLOADS_DIR, payload_file), "r", encoding="utf-8") as f:
+            payload_text = f.read().strip()
 
-# -------- Compare selected responses --------
-if len(response_files) < 2:
-    sys.exit("⚠️ Not enough responses to compare.")
+        print(f"\n📤 Sending payload {i}: {payload_file}")
+        status, resp_text, resp_headers = hit_iflow(url, token, payload_text)
 
-print("\n📊 Available responses:")
-for i, f in enumerate(response_files, 1):
-    print(f"{i}. {f}")
+        save_body(resp_text, f"response{i}_body.json")
+        save_headers(resp_headers, f"response{i}_headers.json")
 
-try:
-    a = int(input("\nEnter first response number to compare: "))
-    b = int(input("Enter second response number to compare: "))
-    if a < 1 or b < 1 or a > len(response_files) or b > len(response_files):
-        raise ValueError
-except ValueError:
-    sys.exit("❌ Invalid selection.")
+        responses.append(resp_text)
+        headers_list.append(resp_headers)
 
-with open(os.path.join(RESULTS_DIR, response_files[a - 1]), "r", encoding="utf-8") as f1, \
-     open(os.path.join(RESULTS_DIR, response_files[b - 1]), "r", encoding="utf-8") as f2:
-    resp1, resp2 = f1.read(), f2.read()
+    if len(responses) < 2:
+        print("\n⚠️ Only one response available. Nothing to compare.")
+        return
 
-compare_responses(resp1, resp2, f"compare_{a}_vs_{b}")
+    print("\n🧮 You can now compare two responses.")
+    for i in range(1, len(responses) + 1):
+        print(f"{i}. response{i}")
 
-print("\n✅ Done! Check results/ for comparison output.")
+    try:
+        r1 = int(input("\nEnter first response number to compare: "))
+        r2 = int(input("Enter second response number to compare: "))
+        if r1 == r2:
+            print("❌ Cannot compare the same responses.")
+            return
+    except ValueError:
+        print("❌ Invalid input.")
+        return
+
+    prefix = f"response{r1}_vs_response{r2}"
+    compare_responses(responses[r1 - 1], responses[r2 - 1], headers_list[r1 - 1], headers_list[r2 - 1], prefix)
+    print("\n✅ Comparison complete!")
+
+if __name__ == "__main__":
+    run()
