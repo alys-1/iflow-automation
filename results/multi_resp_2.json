@@ -1,0 +1,83 @@
+{
+  "payload_file": "payload2.json",
+  "body": {
+    "ns1:ZSD_BAPI_SALESORDER_SIMULATE": {
+      "C_ORDER_ITEMS_IN": {
+        "item": {
+          "CUSTOM_ITEM_ID": "0a99O000000if13QAA",
+          "ITM_NUMBER": "9864324639",
+          "PO_ITM_NO": "9999",
+          "MATERIAL": "230952",
+          "CUST_MAT": "ABCDEFGH",
+          "BATCH": "112505",
+          "REASON_REJ": "Order is Rejected due to customer being blocked",
+          "BILL_BLOCK": "Bill block test",
+          "BILL_DATE": "20251106001252",
+          "PLANT": "Santa Monica",
+          "STORE_LOC": "Basel, Switzerland",
+          "TARGET_QTY": "3000",
+          "REQ_QTY": "3000",
+          "SALES_UNIT": "IGB",
+          "ITEM_CATEG": "Fertilizers",
+          "SHORT_TEXT": "Order to be placed once customer is unblocked",
+          "REQ_DATE": "2025-11-05",
+          "PO_METHOD": "Invoice",
+          "CURRENCY": "INR",
+          "T_UNIT_ISO": "ISO_UNIT_TEST"
+        }
+      },
+      "C_ORDER_PARTNERS": {
+        "item": {
+          "PARTN_ROLE": "Tejaswini",
+          "PARTN_NUMB": "123",
+          "COUNTRY": "INDIA",
+          "POSTL_CODE": "PO:411789",
+          "CITY": "Pune(IN)",
+          "TELEPHONE": "0124-24356823",
+          "LANGU": "EN",
+          "ADDR_TYPE": "Commercial"
+        }
+      },
+      "I_CUSTOM_HEADER_IN": {
+        "CUSTOM_HEADER_ID": "0a69O000000F3yTQAS"
+      },
+      "I_EXTENSION_IN": {
+        "TAXK1": "1",
+        "ZZSORECORDID": "Constant"
+      },
+      "I_ORDER_HEADER_IN": {
+        "DOC_NUMBER": "20251105",
+        "DOC_TYPE": "ZDPP",
+        "DISTR_CHAN": "02",
+        "DIVISION": "02",
+        "PURCH_NO": "UK Cart",
+        "PMNTTRMS": "0600",
+        "CD_TYPE1": "",
+        "CD_VALUE1": "0",
+        "CD_TYPE2": "ZDR3",
+        "CD_VALUE2": "0",
+        "CD_CU_ISO2": ""
+      }
+    }
+  },
+  "headers": {
+    "cache-control": "no-cache, no-store, max-age=0, must-revalidate",
+    "content": "JSON",
+    "currentdate": "2025-11-05",
+    "date": "Wed, 05 Nov 2025 18:42:52 GMT",
+    "expires": "0",
+    "pragma": "no-cache",
+    "sap_messageprocessinglogid": "AGkLmqy2kOPgt5Y4J8UKwPh2Pjfq",
+    "sap_mplcorrelationid": "AGkLmqwzHC9QhWi250lhzyhvp3u8",
+    "sap_pregeneratedmplid": "AGkLmqwaMDhAf3fInxylSY5RHJjN",
+    "server": "SAP",
+    "testheader": "SecondiFlow",
+    "x-content-type-options": "nosniff",
+    "x-correlationid": "751311a0-54c4-48e9-79db-c7552a5c595f",
+    "x-frame-options": "DENY",
+    "x-vcap-request-id": "751311a0-54c4-48e9-79db-c7552a5c595f",
+    "x-xss-protection": "1; mode=block",
+    "transfer-encoding": "chunked",
+    "strict-transport-security": "max-age=31536000; includeSubDomains; preload;"
+  }
+}
