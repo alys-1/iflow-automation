@@ -1,0 +1,20 @@
+{
+  "cache-control": "no-cache, no-store, max-age=0, must-revalidate",
+  "content": "JSON",
+  "currentdate": "2025-11-06",
+  "date": "Thu, 06 Nov 2025 06:59:53 GMT",
+  "expires": "0",
+  "pragma": "no-cache",
+  "sap_messageprocessinglogid": "AGkMR2kn5WLNMrasfF75uFHN6Fzo",
+  "sap_mplcorrelationid": "AGkMR2nEK0H2AKvMUpLozFv9Mdwz",
+  "sap_pregeneratedmplid": "AGkMR2l4MchnkKguhShZgJFVQTOz",
+  "server": "SAP",
+  "testheader": "SecondiFlow",
+  "x-content-type-options": "nosniff",
+  "x-correlationid": "3aec62da-06b6-416f-626b-f2bae94defe8",
+  "x-frame-options": "DENY",
+  "x-vcap-request-id": "3aec62da-06b6-416f-626b-f2bae94defe8",
+  "x-xss-protection": "1; mode=block",
+  "transfer-encoding": "chunked",
+  "strict-transport-security": "max-age=31536000; includeSubDomains; preload;"
+}

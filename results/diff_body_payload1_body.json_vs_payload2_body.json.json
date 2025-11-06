@@ -1,5 +1,9 @@
 {
   "values_changed": {
+    "root['ns1:ZSD_BAPI_SALESORDER_SIMULATE']['C_ORDER_ITEMS_IN']['item']['BILL_DATE']": {
+      "new_value": "20251106122953",
+      "old_value": "20251106122950"
+    },
     "root['ns1:ZSD_BAPI_SALESORDER_SIMULATE']['C_ORDER_PARTNERS']['item']['PARTN_ROLE']": {
       "new_value": "Tejaswini",
       "old_value": "We"
@@ -9,8 +13,8 @@
       "old_value": "4717357"
     },
     "root['ns1:ZSD_BAPI_SALESORDER_SIMULATE']['C_ORDER_PARTNERS']['item']['COUNTRY']": {
-      "new_value": "India",
-      "old_value": "PL"
+      "new_value": "INDIA",
+      "old_value": "Poland"
     }
   }
 }
