@@ -1,0 +1,44 @@
+{
+  "values_changed": {
+    "root['body']['ns1:ZSD_BAPI_SALESORDER_SIMULATE']['C_ORDER_ITEMS_IN']['item']['BILL_DATE']": {
+      "new_value": "20251106120623",
+      "old_value": "20251106120621"
+    },
+    "root['body']['ns1:ZSD_BAPI_SALESORDER_SIMULATE']['C_ORDER_PARTNERS']['item']['PARTN_ROLE']": {
+      "new_value": "Tejaswini",
+      "old_value": "We"
+    },
+    "root['body']['ns1:ZSD_BAPI_SALESORDER_SIMULATE']['C_ORDER_PARTNERS']['item']['PARTN_NUMB']": {
+      "new_value": "123",
+      "old_value": "4717357"
+    },
+    "root['body']['ns1:ZSD_BAPI_SALESORDER_SIMULATE']['C_ORDER_PARTNERS']['item']['COUNTRY']": {
+      "new_value": "INDIA",
+      "old_value": "Poland"
+    },
+    "root['headers']['date']": {
+      "new_value": "Thu, 06 Nov 2025 06:36:23 GMT",
+      "old_value": "Thu, 06 Nov 2025 06:36:21 GMT"
+    },
+    "root['headers']['sap_messageprocessinglogid']": {
+      "new_value": "AGkMQedF0-WGIlEZrA4grr5Gmmhg",
+      "old_value": "AGkMQeX-J969tluzBMDpVMuG6im4"
+    },
+    "root['headers']['sap_mplcorrelationid']": {
+      "new_value": "AGkMQee3UIVfQGW9FVPFGUCljdew",
+      "old_value": "AGkMQeXEpbHsZG2v5udwj2SkUekE"
+    },
+    "root['headers']['sap_pregeneratedmplid']": {
+      "new_value": "AGkMQeejVCDYT5ZsAU0jOzXFt50u",
+      "old_value": "AGkMQeXoENbt8RH5g3ho3k5oGvfl"
+    },
+    "root['headers']['x-correlationid']": {
+      "new_value": "4dcb24f1-472d-4b92-5d78-5da09a4b2789",
+      "old_value": "836e8823-be3a-4c36-597d-fbcd72bcc5b6"
+    },
+    "root['headers']['x-vcap-request-id']": {
+      "new_value": "4dcb24f1-472d-4b92-5d78-5da09a4b2789",
+      "old_value": "836e8823-be3a-4c36-597d-fbcd72bcc5b6"
+    }
+  }
+}
